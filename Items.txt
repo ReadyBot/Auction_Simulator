@@ -21,3 +21,4 @@ Locker
 Printer
 House
 Lock
+Doll
