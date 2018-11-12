@@ -1,0 +1,17 @@
+New
+Old
+Fine
+Unused
+Used
+Worn
+Holy
+Dry
+Wet
+Faded
+Silky
+Hard
+Soft
+Airy
+Earthy
+Solid
+Brittle
