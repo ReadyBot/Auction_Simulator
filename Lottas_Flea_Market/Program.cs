@@ -7,6 +7,8 @@ class Program {
 
   static Random rnd = new Random();
 
+  // TODO: List<User> / Dictionary<int, User>
+
   static String getItem(string[] des, string[] item) {
     string it = des[rnd.Next(0, des.Length)] + " " + item[rnd.Next(0, item.Length)];
     return it;
@@ -46,6 +48,9 @@ class Program {
     foreach (KeyValuePair<string, int> entry in userList)
       Console.WriteLine(entry.Key + "\t" + entry.Value);
 
+    // TODO: create a List<User> or Dictionary<int, User>
+    // or Dictionary<int, Tuple<name,credit>>
+    // and add users to it
   }
 }
 
