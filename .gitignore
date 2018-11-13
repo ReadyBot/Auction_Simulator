@@ -13,6 +13,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# do not include exe files
+*.exe
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
