@@ -7,8 +7,6 @@ class Program {
 
   static Random rnd = new Random();
 
-  // TODO: List<User> / Dictionary<int, User>
-
   static String getItem(string[] des, string[] item) {
     string it = des[rnd.Next(0, des.Length)] + " " + item[rnd.Next(0, item.Length)];
     return it;
@@ -24,35 +22,55 @@ class Program {
     return l;
   }
 
-  static Dictionary<string, int> GenerateUsers(int users, int startCapital) {
+  public static List<User> GenerateUsers(int users, int startCapital) {
     string []fn = System.IO.File.ReadAllLines(@"../FirstName.txt");
     string []ln = System.IO.File.ReadAllLines(@"../SurName.txt");
 
-    var map = new Dictionary<string, int>();
+    List<User> clients = new List<User>();
     for (int i = 0; i < users; ++i)
-      map.Add(getItem(fn, ln), startCapital);
-    return map;
+      clients.Add(new User(i, getItem(fn, ln), startCapital));
+
+    return clients;
   }
 
-  static void Main(string[] args) { 
-    int items = 0, users = 0, startCapital = 0;
-
-    Console.WriteLine("How many users? ");
-    int.TryParse(Console.ReadLine(), out users);
+  public static int promptItems() {
+    int items = 0;
     Console.WriteLine("How many objects for sale? ");
     int.TryParse(Console.ReadLine(), out items);
+    return items;
+  }
+
+  public static int promptCapital() {
+    int capital = 0;
     Console.WriteLine("What is the buyers start capital?");
-    int.TryParse(Console.ReadLine(), out startCapital);
+    int.TryParse(Console.ReadLine(), out capital);
+    return capital;
+  }
 
-    var itemList = GenerateItems(items);
-    var userList = GenerateUsers(users, startCapital);
+  public static int promptUsers() {
+    int users = 0;
+    Console.WriteLine("How many users? ");
+    int.TryParse(Console.ReadLine(), out users);
+    return users;
+  } 
 
-    foreach (KeyValuePair<string, int> entry in userList)
-      Console.WriteLine(entry.Key + "\t" + entry.Value);
+  static void Main(string[] args) { 
+    var users        = promptUsers();
+    var items        = promptItems();
+    var startCapital = promptCapital();
+    var itemList     = GenerateItems(items);
+    var userList     = GenerateUsers(users, startCapital);
 
-    // TODO: create a List<User> or Dictionary<int, User>
-    // or Dictionary<int, Tuple<name,credit>>
-    // and add users to it
+    foreach (var usr in userList)
+      Console.WriteLine(usr.name + " " + usr.capital);
+    
+    AuctionHouse ah = new AuctionHouse();
+    ah.users = userList;
+    User[] l = ah.getBidders();
+
+    Console.WriteLine();
+    foreach (User u in l)
+      Console.WriteLine(u.name + " " + u.capital);
   }
 }
 
