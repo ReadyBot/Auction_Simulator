@@ -16,7 +16,7 @@ namespace Lottas_Flea_Market {
     }
   }
 
-  public class AuctionHouse {
+  public class BidderList {
     public List<string> items { set; get; }
     public List<User> users { set; get; }
 
@@ -30,12 +30,26 @@ namespace Lottas_Flea_Market {
       return array;
     }
 
-    public void Auction() {
+    public void Auction()
+    {
+        int bid = 0;
+        int higherBid = 0;
+
+
       for (int i = 0; i < items.Count; i++) {
         User[] bidders = getBidders();
-        foreach (var user in bidders) {
-          user.bid(items[i]);
-        }
+        boolean Sale = false;
+          while (Sale!=True)
+          {
+              higherBid = bidders(i).capital / 10;
+              if (higherBid > 5 && (bid + higherBid)<(bidders(i).capital * 0.6))
+              {
+                bid = bid + higherBid;
+                  Console.WriteLine(bidders(i) + " has bid: " + bid);
+              }else{
+                continue;
+              }
+          }
       }
     }
   }

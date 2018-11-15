@@ -22,3 +22,7 @@ Printer
 House
 Lock
 Doll
+Bag
+Table
+Sofa
+
