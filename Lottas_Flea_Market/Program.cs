@@ -35,12 +35,14 @@ class Program {
   }
 
   static void Main(string[] args) { 
-    int items = 0, users = 0, startCapital = 1500;
+    int items = 0, users = 0, startCapital = 0;
+
     Console.WriteLine("How many users? ");
     int.TryParse(Console.ReadLine(), out users);
-
     Console.WriteLine("How many objects for sale? ");
     int.TryParse(Console.ReadLine(), out items);
+    Console.WriteLine("What is the buyers start capital?");
+    int.TryParse(Console.ReadLine(), out startCapital);
 
     var itemList = GenerateItems(items);
     var userList = GenerateUsers(users, startCapital);
