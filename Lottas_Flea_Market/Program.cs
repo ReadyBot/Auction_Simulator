@@ -54,13 +54,36 @@ class Program {
     return users;
   } 
 
+  public static bool isParticipating() {
+    Console.WriteLine("Do you want to create an account in order to participate in the bidding? (y/n)");
+    string answer;
+    int.TryParse(Console.ReadLine(), out answer);
+    if (answer.Equals("y") ||answer.Equals("Y"))
+      return true;
+    else
+      return false;
+  }
+
+  public static User createCustomUser(int max) {
+    int    cap;
+    string name;
+
+    int id = max;
+    return new User(id, name, cap);
+  }
+
   static void Main(string[] args) { 
     var users        = promptUsers();
     var items        = promptItems();
     var startCapital = promptCapital();
     var itemList     = GenerateItems(items);
     var userList     = GenerateUsers(users, startCapital);
-    
+    var participate  = isParticipating();
+
+    User customUser;
+    if (participate)
+      customUser = createCustomUser(users);
+
     Bank.users    = userList;
     BidderList ah = new BidderList();
     ah.users      = userList;
