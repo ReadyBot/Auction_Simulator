@@ -21,6 +21,7 @@ static class RandomExtensions {
 public class AuctionHouse {
   public List<string> items { set; get; }
   public List<User>   users { set; get; }
+  public User customUser { set; get; }
 
   public AuctionHouse() {
     this.users = Bank.users;
@@ -37,7 +38,7 @@ public class AuctionHouse {
     return array;
   }
 
-  public void Auction() {
+  public void Auction(bool participant) {
     Stopwatch stopwatch = new Stopwatch();
     string lastBidder   = "";
 
@@ -52,20 +53,39 @@ public class AuctionHouse {
         for (int j = 0; j < users.Count; ++j) {
           higherBid = bidders[j].capital / 10; 
 
-          if (stopwatch.Elapsed.TotalSeconds > 2) {
+          if (stopwatch.Elapsed.TotalSeconds > 4) {
             stopwatch.Restart();
             Console.WriteLine("Sold!");
+            Bank.Saldo(bidders[j].name, bid);
             Sale = true;
             break;
+          }
+
+          if (stopwatch.Elapsed.TotalSeconds > 2 && participant) {
+            stopwatch.Restart();
+            Console.WriteLine("Do you want to bid on this item? (y/n)");
+            string bidAnswer = Console.ReadLine();
+
+            if (bidAnswer.Equals("y") || bidAnswer.Equals("Y")) {
+              Console.WriteLine("Input bid: ");
+              int inputbid;
+              int.TryParse(Console.ReadLine(), out inputbid);
+
+              if (inputbid < customUser.capital && inputbid > 0) {
+                lastBidder = customUser.name;
+                Console.WriteLine("                         " + customUser.name + " has bid: " + inputbid);
+
+                Bank.Saldo(customUser.name, inputbid);
+
+                stopwatch.Start();
+              }
+            }
           }
 
           if (higherBid > 5 && (bid + higherBid) < (bidders[j].capital * 0.6) && (bidders[j].name != lastBidder)) {
             bid        = bid + higherBid;
             lastBidder = bidders[j].name;
             Console.WriteLine("                         " + bidders[j].name + " has bid: " + bid);
-
-            Bank.Saldo(bidders[j].name, bid);
-
             stopwatch.Start();
             Thread.Sleep(500);
           }

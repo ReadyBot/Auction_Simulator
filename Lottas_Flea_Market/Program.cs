@@ -56,8 +56,7 @@ class Program {
 
   public static bool isParticipating() {
     Console.WriteLine("Do you want to create an account in order to participate in the bidding? (y/n)");
-    string answer;
-    int.TryParse(Console.ReadLine(), out answer);
+    string answer = Console.ReadLine();
     if (answer.Equals("y") ||answer.Equals("Y"))
       return true;
     else
@@ -65,8 +64,11 @@ class Program {
   }
 
   public static User createCustomUser(int max) {
-    int    cap;
-    string name;
+    int cap;
+    Console.WriteLine("How much do you want to deposit: ");
+    int.TryParse(Console.ReadLine(), out cap);
+    Console.WriteLine("Enter your name: ");
+    string name = Console.ReadLine();
 
     int id = max;
     return new User(id, name, cap);
@@ -80,17 +82,21 @@ class Program {
     var userList     = GenerateUsers(users, startCapital);
     var participate  = isParticipating();
 
-    User customUser;
-    if (participate)
-      customUser = createCustomUser(users);
 
     Bank.users    = userList;
-    BidderList ah = new BidderList();
+    AuctionHouse ah = new AuctionHouse();
+    User customUser;
+
+    if (participate) {
+      customUser    = createCustomUser(users);
+      ah.customUser = customUser;
+    }
+
     ah.users      = userList;
     ah.items      = itemList;
     User[] l      = ah.getBidders();
 
-    ah.Auction();
+    ah.Auction(participate);
   }
 }
 
