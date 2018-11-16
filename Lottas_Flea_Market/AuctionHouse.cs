@@ -18,11 +18,11 @@ static class RandomExtensions {
   }
 }
 
-public class BidderList {
+public class AuctionHouse {
   public List<string> items { set; get; }
   public List<User>   users { set; get; }
 
-  public BidderList() {
+  public AuctionHouse() {
     this.users = Bank.users;
   }
 
