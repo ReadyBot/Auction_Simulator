@@ -46,7 +46,7 @@ public class BidderList {
       int higherBid  = 0;
       User[] bidders = getBidders();
       bool Sale      = false;
-      Console.WriteLine(items[i] + " is up for sale");
+      Console.WriteLine(items[i] + " is up for sale: ");
 
       while (Sale!=true) {
         for (int j = 0; j < users.Count; ++j) {
@@ -54,7 +54,7 @@ public class BidderList {
 
           if (stopwatch.Elapsed.TotalSeconds > 2) {
             stopwatch.Restart();
-            Console.WriteLine("sold");
+            Console.WriteLine("Sold!");
             Sale = true;
             break;
           }
@@ -62,7 +62,7 @@ public class BidderList {
           if (higherBid > 5 && (bid + higherBid) < (bidders[j].capital * 0.6) && (bidders[j].name != lastBidder)) {
             bid        = bid + higherBid;
             lastBidder = bidders[j].name;
-            Console.WriteLine(bidders[j].name + " has bid: " + bid);
+            Console.WriteLine("                         " + bidders[j].name + " has bid: " + bid);
 
             Bank.Saldo(bidders[j].name, bid);
 
