@@ -4,6 +4,9 @@ using System.Collections.Generic;
 namespace Lottas_Flea_Market {
 
   public class Bank {
+
+    private Bank() { }
+
     public static List<User> users { set; get; }
 
     public static void Saldo(string username, int bid) {
