@@ -7,7 +7,7 @@ class Program {
 
   static Random rnd = new Random();
 
-  static String getItem(string[] des, string[] item) {
+  static String concatRandom(string[] des, string[] item) {
     string it = des[rnd.Next(0, des.Length)] + " " + item[rnd.Next(0, item.Length)];
     return it;
   }
@@ -18,7 +18,7 @@ class Program {
 
     List<string> l = new List<string>();
     for (int i = 0; i < items; ++i)
-      l.Add(getItem(desc, item));
+      l.Add(concatRandom(desc, item));
     return l;
   }
 
@@ -28,7 +28,7 @@ class Program {
 
     List<User> clients = new List<User>();
     for (int i = 0; i < users; ++i)
-      clients.Add(new User(i, getItem(fn, ln), startCapital));
+      clients.Add(new User(i, concatRandom(fn, ln), startCapital));
 
     return clients;
   }
