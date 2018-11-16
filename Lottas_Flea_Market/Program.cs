@@ -64,11 +64,11 @@ class Program {
     // foreach (var usr in userList)
     //   Console.WriteLine(usr.name + " " + usr.capital);
     
-    Bank.users = userList;
+    Bank.users    = userList;
     BidderList ah = new BidderList();
-    ah.users = userList;
-    ah.items = itemList;
-    User[] l = ah.getBidders();
+    ah.users      = userList;
+    ah.items      = itemList;
+    User[] l      = ah.getBidders();
 
     // Console.WriteLine();
     // foreach (User u in l)
