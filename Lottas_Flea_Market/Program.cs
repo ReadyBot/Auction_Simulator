@@ -34,23 +34,23 @@ class Program {
   }
 
   public static int promptItems() {
-    int items = 20;
-    // Console.WriteLine("How many objects for sale? ");
-    // int.TryParse(Console.ReadLine(), out items);
+    int items = 0;
+    Console.WriteLine("How many objects for sale? ");
+    int.TryParse(Console.ReadLine(), out items);
     return items;
   }
 
   public static int promptCapital() {
-    int capital = 1500;
-    // Console.WriteLine("What is the buyers start capital?");
-    // int.TryParse(Console.ReadLine(), out capital);
+    int capital = 0;
+    Console.WriteLine("What is the buyers start capital?");
+    int.TryParse(Console.ReadLine(), out capital);
     return capital;
   }
 
   public static int promptUsers() {
-    int users = 10;
-    // Console.WriteLine("How many users? ");
-    // int.TryParse(Console.ReadLine(), out users);
+    int users = 0;
+    Console.WriteLine("How many users? ");
+    int.TryParse(Console.ReadLine(), out users);
     return users;
   } 
 
@@ -60,9 +60,6 @@ class Program {
     var startCapital = promptCapital();
     var itemList     = GenerateItems(items);
     var userList     = GenerateUsers(users, startCapital);
-
-    // foreach (var usr in userList)
-    //   Console.WriteLine(usr.name + " " + usr.capital);
     
     Bank.users    = userList;
     BidderList ah = new BidderList();
@@ -70,10 +67,6 @@ class Program {
     ah.items      = itemList;
     User[] l      = ah.getBidders();
 
-    // Console.WriteLine();
-    // foreach (User u in l)
-    //   Console.WriteLine(u.name + " " + u.capital);
-    //
     ah.Auction();
   }
 }
