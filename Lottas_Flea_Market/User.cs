@@ -12,15 +12,5 @@ namespace Lottas_Flea_Market {
       this.name    = name;
       this.capital = capital;
     }
-    
-    // bid
-    public void Bid(string item) {
-
-    }
-    
-    // add bought items to list
-    public void AddBoughtItems() {
-
-    }
   }
 }
