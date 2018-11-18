@@ -57,6 +57,11 @@ public class AuctionHouse {
             stopwatch.Restart();
             Console.WriteLine("Sold!");
             Bank.Saldo(bidders[j].name, bid);
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"../TransactionLog.txt", true)) {
+              file.WriteLine(bidders[j].name + " has purchased " + items[i] + " for " + bid);
+            }
+
             Sale = true;
             break;
           }
@@ -95,6 +100,15 @@ public class AuctionHouse {
         }
       }
     }
+
+    // printing cashlog after auction
+    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"../TransactionLog.txt", true)) {
+      file.WriteLine("Saldo: \t\tName: ");
+      for (int i = 0; i < users.Count; ++i) {
+        file.WriteLine(users[i].capital + "\t\t" + users[i].name);
+      }
+    }
+
   }
 }
 
